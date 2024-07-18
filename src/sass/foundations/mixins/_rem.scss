@@ -1,0 +1,7 @@
+@use 'sass:math';
+@function rem($size) {
+    @if type-of($size) == 'number' and not unitless($size) {
+      $size: math.div($size, ($size * 0 + 1));
+    }
+    @return math.div($size, 100) + rem;
+}

@@ -1,0 +1,11 @@
+@use '../global' as *;
+.l-container {
+  @include pc {
+    width: rem(1080px);
+    margin-inline: auto;
+  }
+  @include sp {
+    padding: 0 rem(24px);
+  }
+}
+

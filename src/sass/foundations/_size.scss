@@ -1,0 +1,11 @@
+@use '../global' as *;
+
+:root {
+  // --clip-path-title: polygon(0 0,100% 0,90% 100%, 0% 100%);
+  @include pc {
+    --height-header: .80rem;
+  }
+  @include sp {
+    --height-header: .74rem;
+  }
+}

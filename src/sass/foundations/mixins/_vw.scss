@@ -1,0 +1,23 @@
+@use 'sass:math';
+// ヘッダーが縮小を始める境界値
+$header-scale-limit: 1100;
+
+@function vw($size) {
+    @if type-of($size) == 'number' and not unitless($size) {
+      $size: math.div( $size , ($size * 0 + 1));
+    }
+    @return ( math.div($size , 750) * 100 ) + vw;
+}
+@function vwpc($size) {
+    @if type-of($size) == 'number' and not unitless($size) {
+      $size: math.div( $size , ($size * 0 + 1));
+    }
+    @return ( math.div($size , 1280) * 100 ) + vw;
+}
+// ヘッダー縮小
+@function vwpc-header($size) {
+    @if type-of($size) == 'number' and not unitless($size) {
+      $size: math.div( $size , ($size * 0 + 1));
+    }
+    @return ( math.div($size , $header-scale-limit) * 100 ) + vw;
+}

@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+// @import 'reset/html5-doctor-reset';
+@use 'foundations/destyle.css';
+
+// Swiper
+// @use '../../node_modules/swiper/swiper-bundle.css';
+
+//// '_global'
+/// @use 'settings/colors';
+/// 
+/// // @use 'foundations/mixins/rem' as *;
+/// // @use 'foundations/mixins/responsive' as *;
+/// // @use 'foundations/mixins/vw';
+@use 'foundations/base' as *;
+@use 'foundations/font';
+/// // // @use 'foundations/size';
+@forward 'foundations/size';
+@forward 'foundations/colors';
+@forward 'foundations/vars';
+/// 
+/// // example
+/// // @use "foundations/mixins/responsive" as *;
+/// // @use "foundations/mixins/rem" as *;
+/// // @use "config/vars" as *;
+/// 
+/// // @use 'sass:math';
+/// 
+@forward 'layouts/container';
+
+@forward 'objects/components/text-link';
+
+@forward 'objects/projects/index';

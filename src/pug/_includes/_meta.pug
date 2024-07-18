@@ -1,0 +1,91 @@
+head
+    //- include _gtm
+    block meta
+        | <!-- Google Tag Manager -->
+        | <!-- End Google Tag Manager -->
+        meta(charset='utf-8')
+
+        //- noindex !!!!!!!!! 
+          meta(name="robots" content="noindex,nofollow")
+          meta(name="robots" content="noindex")
+
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no")
+        meta(name="format-detection" content="telephone=no")
+
+        //---------------- title
+        title #{metas.title}
+        //---------------- description
+        meta(name="description", content=metas.description)
+        //- meta(name="keywords", content=metas.keyword)
+        meta(name="author" content=site.author)
+        meta(name="copyright" content=site.copyright)
+        //-
+        //---------------- og:title
+        meta(property="og:title", content=metas.title)
+
+        meta(property="og:site_name", content=metas.site_name)
+        meta(property="og:type", content="website")
+        meta(property="og:locale", content="ja_JP")
+        //- meta(property="og:image", content=site.url + "/assets/images/ogp/" + metas.ogp + ".png")
+        meta(property="og:image", content!= imgdir + "/ogp/" + metas.ogp + ".png")
+
+        //---------------- og:description
+        meta(property="og:description", content=metas.description)
+
+        :php if ( is_home() || is_front_page() ):
+        meta(property="og:url", content!='<?php echo esc_url(home_url()); ?>')
+        :php elseif(is_archive()):
+        meta(property="og:url", content!='<?php echo esc_url(get_post_type_archive_link(get_post_type())); ?>')
+        :php else:
+        meta(property="og:url", content!='<?php the_permalink(); ?>')
+        :php endif;
+        //- meta(property="fb:app_id", content="任意のID")
+
+        //- meta(name="keywords", content=metas.keyword)
+        //---------------- twitter:title
+        meta(name="twitter:title", content=metas.title)
+
+        meta(name="twitter:site", content=site.url)
+        meta(name="twitter:card", content="summary_large_image")
+
+        //---------------- twitter:description
+        meta(name="twitter:description", content=metas.description)
+
+        //- meta(name="twitter:image:src", content=site.url + "/assets/images/ogp/" + metas.ogp + ".png")
+        meta(name="twitter:image:src", content!= imgdir + "/ogp/" + metas.ogp + ".png")
+        //- meta(name="twitter:creator", content="")
+
+        meta(name="twitter:domain" content=site.domain)
+
+        //- meta(name="msapplication-TileColor" content="#ffffff")
+        //- meta(name="msapplication-TileImage" content!= imgdir + "/favicons/mstile-144x144.png")
+        //- meta(name="msapplication-config" content!= imgdir + "/favicons/browserconfig.xml")
+
+        meta(name="theme-color" content="#f9f8f3")
+
+        link(rel="manifest" href!= imgdir + "/favicons/manifest.json")
+        link(rel="apple-touch-icon" sizes="57x57" href!= imgdir + "/favicons/apple-touch-icon-57x57.png")
+        link(rel="apple-touch-icon" sizes="60x60" href!= imgdir + "/favicons/apple-touch-icon-60x60.png")
+        link(rel="apple-touch-icon" sizes="72x72" href!= imgdir + "/favicons/apple-touch-icon-72x72.png")
+        link(rel="apple-touch-icon" sizes="76x76" href!= imgdir + "/favicons/apple-touch-icon-76x76.png")
+        link(rel="apple-touch-icon" sizes="114x114" href!= imgdir + "/favicons/apple-touch-icon-114x114.png")
+        link(rel="apple-touch-icon" sizes="120x120" href!= imgdir + "/favicons/apple-touch-icon-120x120.png")
+        link(rel="apple-touch-icon" sizes="144x144" href!= imgdir + "/favicons/apple-touch-icon-144x144.png")
+        link(rel="apple-touch-icon" sizes="152x152" href!= imgdir + "/favicons/apple-touch-icon-152x152.png")
+        link(rel="apple-touch-icon" sizes="180x180" href!= imgdir + "/favicons/apple-touch-icon-180x180.png")
+        link(rel="icon" type="image/png" href!= imgdir + "/favicons/icon-32x32.png" sizes="32x32")
+        link(rel="icon" type="image/png" href!= imgdir + "/favicons/android-chrome-192x192.png" sizes="192x192")
+        link(rel="icon" type="image/png" href!= imgdir + "/favicons/icon-96x96.png" sizes="96x96")
+        link(rel="icon" type="image/png" href!= imgdir + "/favicons/icon-16x16.png" sizes="16x16")
+        //- link(rel="icon" type="image/svg+xml" href!= imgdir + "/favicons/favicon.svg")
+
+        //- link(rel="mask-icon" href!= imgdir + "/favicons/safari-pinned-tab.svg" color="#5bbad5")
+        link(rel="icon" type="image/png" href!= imgdir + "/favicons/favicon.ico")
+        link(rel="apple-touch-icon" sizes="150x150" href!= imgdir + "/favicons/apple-touch-icon.png")
+
+    block style
+        :php wp_head();
+        | <link rel="preconnect" href="https://fonts.googleapis.com">
+        | <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        | <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    include _importmap

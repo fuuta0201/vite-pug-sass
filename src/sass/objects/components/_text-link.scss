@@ -1,0 +1,16 @@
+@use '../../global' as *;
+.c-text-link {
+  background: linear-gradient(currentColor, currentColor) 0 100%/0 1px no-repeat;
+  transition: background .5s ease;
+  will-change: transition;
+  line-height: 1.5;
+  @media (hover) {
+    &:hover {
+      background-size: 100% 1px;
+    }
+    button:hover &,
+    a:hover & {
+      background-size: 100% 1px;
+    }
+  }
+}

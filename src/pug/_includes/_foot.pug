@@ -1,0 +1,7 @@
+//- WordPress
+| <?php wp_footer(); ?>
+
+//- script(
+    type="module",
+    src!="<?php echo get_theme_file_uri( '/assets/js/app.js' ); ?>?ver=<?php echo esc_attr(APP_VERSION); ?>"
+  )
