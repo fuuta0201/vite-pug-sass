@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    #platform: linux/x86_64
+    # container_name: '${WP_THEME}-mysql'
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    # restart: no
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:6.5.5-php8.3
+    # image: wordpress:latest
+    # image: wordpress:5.9.1
+    #platform: linux/x86_64
+    # container_name: '${WP_THEME}-wordpress'
+    volumes:
+      - '../dist/wp-content/themes/${WP_THEME}:/var/www/html/wp-content/themes/${WP_THEME}'
+      - './php.ini:/usr/local/etc/php/php.ini'
+    ports:
+      - '${APP_PORT:-80}:80'
+    # restart: no
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_PORT: '${FORWARD_DB_PORT:-3306}'
+      WORDPRESS_DEBUG: 'true'
+  cli:
+    image: wordpress:cli
+    # container_name: '${WP_THEME}-cli'
+    # container_name: cli
+    volumes_from:
+      - wordpress
+    depends_on:
+      - mysql
+      - wordpress
+    command: "--info"
+    user: xfs
+    environment:
+      WORDPRESS_DB_HOST: mysql:'${FORWARD_DB_PORT:-3306}'
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+
+volumes:
+    mysql_data:
+    public_html:
