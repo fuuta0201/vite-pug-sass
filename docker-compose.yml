@@ -25,7 +25,7 @@ services:
     #platform: linux/x86_64
     # container_name: '${WP_THEME}-wordpress'
     volumes:
-      - '../dist/wp-content/themes/${WP_THEME}:/var/www/html/wp-content/themes/${WP_THEME}'
+      - './dist/wp-content/themes/${WP_THEME}:/var/www/html/wp-content/themes/${WP_THEME}'
       - './php.ini:/usr/local/etc/php/php.ini'
     ports:
       - '${APP_PORT:-80}:80'
